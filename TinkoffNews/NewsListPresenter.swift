@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 class NewsListPresenter {
     private let newsService: NewsServiceProtocol!
@@ -29,7 +30,7 @@ class NewsListPresenter {
                 self?.sortedNewsList = newsList.sorted(by: { (firstData, secondData) -> Bool in
                     return firstData.date > secondData.date
                 })
-                if let listCellsModels = self?.sortedNewsList!.map({ NewsViewData(title: $0.title, date: dateFormatter.string(from:$0.date))}) {
+                if let listCellsModels = self?.sortedNewsList!.map({ NewsViewData(title: $0.title.htmlEncodedString(), date: dateFormatter.string(from:$0.date))}) {
                     self?.newsListView?.stopLoading()
                     OperationQueue.main.addOperation {
                         self?.newsListView?.set(titles: listCellsModels)
@@ -37,6 +38,7 @@ class NewsListPresenter {
                 }
             }.resume()
     }
+
     
     func selectNews(withIndex index: Int) {
         let id = sortedNewsList![index].id

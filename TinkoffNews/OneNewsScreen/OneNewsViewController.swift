@@ -12,10 +12,10 @@ class OneNewsViewController: UIViewController, OneNewsView {
     
     var presenter: OneNewsPresenter?
     
-    @IBOutlet weak var textView: UITextView!
+    @IBOutlet weak var webView: UIWebView!
 
     func fill(info: NewsModel) {
-        textView.text = info.text
+        webView.loadHTMLString(info.text, baseURL: nil)
     }
     
     override func viewDidLoad() {

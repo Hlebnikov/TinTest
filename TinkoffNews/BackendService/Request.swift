@@ -22,7 +22,7 @@ class Request<ResponseType> {
 extension Request {
     final func resume() {
         guard let url = URL(string: self.url ?? "") else {
-            print("Url \(self.url) is not valid")
+            print("Url \(self.url ?? "n/a") is not valid")
             return
         }
         
