@@ -11,25 +11,30 @@ import Foundation
 class OneNewsPresenter {
     private var view: OneNewsView!
     private var newsService: NewsServiceProtocol!
+    private var newsStore: NewsStoreProtocol?
+    private var news: NewsModel!
     
-    var newsId: String?
-    
-    init(view: OneNewsView, newsService: NewsServiceProtocol, newsId: String) {
+    init(view: OneNewsView, newsService: NewsServiceProtocol, news: NewsModel) {
         self.view = view
         self.newsService = newsService
-        self.newsId = newsId
+        self.news = news
+        
+        newsStore = NewsStore()
     }
     
     func reload() {
-        guard let newsId = newsId else {return}
-        
-        newsService
-            .getDetails(forNewsWithId: newsId)
-            .onSuccess { (news) in
-            OperationQueue.main.addOperation {
-                self.view.fill(info: news)
-            }
-        }.resume()
-
+        news.fetch()
+        if news.text != nil {
+            self.view.fill(info: news)
+        } else {
+            newsService
+                .getDetails(forNewsWithId: news.id)
+                .onSuccess { (news) in
+                    OperationQueue.main.addOperation {
+                        self.view.fill(info: news)
+                    }
+                    news.save()
+                }.resume()
+        }
     }
 }

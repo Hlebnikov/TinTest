@@ -14,7 +14,6 @@ class NewsStore: NewsStoreProtocol {
         for oneNews in news {
             oneNews.save()
         }
-//        CoreDataManager.shared.saveContext()
     }
     
     func clear() {

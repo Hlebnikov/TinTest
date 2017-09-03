@@ -12,16 +12,23 @@ import UIKit
 class NewsListPresenter {
     private let newsService: NewsServiceProtocol!
     private var newsListView: NewsListView?
-    private var newsStroe: NewsStoreProtocol?
+    private var newsStore: NewsStoreProtocol?
     
-    private var sortedNewsList: [NewsModel]?
+    private var sortedNewsList: [NewsModel]? {
+        didSet {
+            if sortedNewsList != nil{
+                newsStore?.set(news: sortedNewsList!)
+                self.showNewsList(newsList: sortedNewsList!)
+            }
+        }
+    }
     var provider: Provider?
     
     init(view: NewsListView, newsService: NewsServiceProtocol) {
         self.newsService = newsService
         self.newsListView = view
         
-        self.newsStroe = NewsStore()
+        self.newsStore = NewsStore()
     }
     
     @objc func update() {
@@ -30,20 +37,17 @@ class NewsListPresenter {
         newsListView?.startLoading()
 
         
-        if let storedNews = newsStroe?.getNews() {
-            self.showNewsList(newsList: storedNews)
+        if let storedNews = newsStore?.getNews() {
+            if storedNews.count > 0 {
+                self.sortedNewsList = storedNews
+            }
         }
         
         newsService.getNewsTitlesList()
             .onSuccess {[weak self] (newsList) in
-                
                 self?.sortedNewsList = newsList.sorted(by: { (firstData, secondData) -> Bool in
                     return firstData.date > secondData.date
                 })
-                
-                self?.newsStroe?.set(news: self!.sortedNewsList!)
-
-                self?.showNewsList(newsList: self!.sortedNewsList!)
             }.resume()
     }
     
@@ -62,8 +66,10 @@ class NewsListPresenter {
 
     
     func selectNews(withIndex index: Int) {
-        let id = sortedNewsList![index].id
-        provider?.openNews(withId: id)
+        if let sortedNewsList = self.sortedNewsList {
+            let news = sortedNewsList[index]
+            provider?.openNewsVC(with: news)
+        }
     }
     
 }

@@ -24,41 +24,65 @@ struct NewsModel {
 }
 
 extension NewsModel: Cashable {
-    func save() {
-        let context = CoreDataManager.shared.context
-        let entityDescription = CoreDataManager.shared.entityForName(string: "News")
-        let predicate = NSPredicate(format: "%K == %@", "id", id)
+    private func newsFetchRequest() -> NSFetchRequest<News> {
         let fetchRequest = NSFetchRequest<News>(entityName: "News")
+        let predicate = NSPredicate(format: "%K == %@", "id", id)
         fetchRequest.predicate = predicate
-        let queue = DispatchQueue(label: "save", qos: .default)
-        queue.sync {
-            do{
-                if let result = try context.fetch(fetchRequest).first {
-                    context.delete(result)
-                }
-            } catch {
-                print(error)
-            }
+        return fetchRequest
+    }
+    
+    private var context: NSManagedObjectContext {
+        return CoreDataManager.shared.context
+    }
+    
+    func save() {
+        if exists() {
+            updateIfNeeded()
+            return
         }
+        createNew()
+    }
+    
+    private func createNew() {
+        let entityDescription = CoreDataManager.shared.entityForName(string: "News")
+        let managedObject = News(entity: entityDescription!, insertInto: context)
         
-        let managedObject = NSManagedObject(entity: entityDescription!, insertInto: context)
-        
-        managedObject.setValue(self.id, forKey: "id")
-        managedObject.setValue(self.title, forKey: "title")
-        managedObject.setValue(self.text, forKey: "text")
-        managedObject.setValue(self.date, forKey: "date")
-
+        managedObject.id = self.id
+        managedObject.title = self.title
+        managedObject.text = self.text
+        managedObject.date = self.date as NSDate
+    }
+    
+    private func exists() -> Bool {
+        do{
+            if let _ = try context.fetch(newsFetchRequest()).first {
+                return true
+            }
+        } catch {
+            print(error)
+        }
+        return false
+    }
+    
+    private func updateIfNeeded() {
+        do{
+            if let result = try context.fetch(newsFetchRequest()).first {
+                if result.text == nil && self.text != nil {
+                    result.text = text
+                    CoreDataManager.shared.saveContext()
+                }
+            }
+        } catch {
+            print(error)
+        }
     }
 
     mutating func fetch() {
-        let fetchRequest = NSFetchRequest<News>(entityName: "News")
-        let predicate = NSPredicate(format: "%K == %@", "id", id)
-        fetchRequest.predicate = predicate
-        let context = CoreDataManager.shared.context
         do {
-            if let result = try context.fetch(fetchRequest).first {
+            if let result = try context.fetch(newsFetchRequest()).first {
+                self.id = result.id ?? ""
                 self.title = result.title ?? ""
-                self.text = result.text ?? ""
+                self.text = result.text
                 self.date = result.date as Date? ?? Date()
             }
         } catch {
@@ -67,14 +91,10 @@ extension NewsModel: Cashable {
     }
     
     func delete() {
-        let fetchRequest = NSFetchRequest<News>(entityName: "News")
-        let predicate = NSPredicate(format: "%K == %@", "id", id)
-        fetchRequest.predicate = predicate
-        let context = CoreDataManager.shared.context
         do {
-            let results = try context.fetch(fetchRequest)
+            let results = try context.fetch(newsFetchRequest())
             for result in results {
-                CoreDataManager.shared.context.delete(result)
+                context.delete(result)
             }
         } catch {
             print(error)
