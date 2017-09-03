@@ -8,7 +8,7 @@
 
 import Foundation
 
-class GetDetails: Request<NewsModel> {
+class GetDetailsRequest: Request<NewsModel> {
     var id: String
     init(id: String) {
         self.id = id
@@ -24,14 +24,14 @@ class GetDetails: Request<NewsModel> {
             resultCode == "OK",
             let payload = json["payload"] as? [String: Any]
             else {
-                return NewsModel(id: "", title: "", text: "")
+                return NewsModel(id: "", title: "", date: Date(), text: "")
         }
         
         let titleJson = payload["title"] as! [String: Any]
         let id = titleJson["id"] as! String
         let title = titleJson["text"] as! String
         let content = payload["content"] as! String
-        
-        return NewsModel(id: id, title: title, text: content)
+//        let date = payload["date"] as! [String]
+        return NewsModel(id: id, title: title, date: Date(), text: content)
     }
 }

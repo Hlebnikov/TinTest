@@ -14,9 +14,10 @@ class OneNewsPresenter {
     
     var newsId: String?
     
-    init(view: OneNewsView, newsService: NewsServiceProtocol) {
+    init(view: OneNewsView, newsService: NewsServiceProtocol, newsId: String) {
         self.view = view
         self.newsService = newsService
+        self.newsId = newsId
     }
     
     func reload() {

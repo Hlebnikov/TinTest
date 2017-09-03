@@ -20,8 +20,7 @@ class Provider {
     
     func openNews(withId id: String) {
         let oneNewsVC = storyboard.instantiateViewController(withIdentifier: "newsDetails") as! OneNewsViewController
-        oneNewsVC.presenter = OneNewsPresenter(view: oneNewsVC, newsService: NewsService())
-        oneNewsVC.presenter?.newsId = id
+        oneNewsVC.presenter = OneNewsPresenter(view: oneNewsVC, newsService: NewsService(), newsId: id)
         navigationController.show(oneNewsVC, sender: nil)
     }
 }

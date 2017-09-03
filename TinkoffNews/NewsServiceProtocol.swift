@@ -8,19 +8,8 @@
 
 import Foundation
 
-struct NewsModel {
-    var id: String
-    var title: String
-    var text: String
-}
-
-struct NewsTitleModel {
-    var id: String
-    var title: String
-    var date: Date
-}
 
 protocol NewsServiceProtocol {
-    func getNewsTitlesList() -> Request<[NewsTitleModel]>
+    func getNewsTitlesList() -> Request<[NewsModel]>
     func getDetails(forNewsWithId id: String) -> Request<NewsModel>
 }

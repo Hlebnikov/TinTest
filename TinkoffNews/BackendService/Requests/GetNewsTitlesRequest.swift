@@ -8,14 +8,14 @@
 
 import Foundation
 
-class GetNewsTitlesRequest: Request<[NewsTitleModel]> {
+class GetNewsTitlesRequest: Request<[NewsModel]> {
     override init() {
         super.init()
         self.url = "https://api.tinkoff.ru/v1/news"
     }
     
-    override func map(_ data: Data) -> [NewsTitleModel] {
-        var out = [NewsTitleModel]()
+    override func map(_ data: Data) -> [NewsModel] {
+        var out = [NewsModel]()
         guard
             let json = try! JSONSerialization.jsonObject(with: data) as? [String: Any],
             let resultCode = json["resultCode"] as? String,
@@ -23,11 +23,11 @@ class GetNewsTitlesRequest: Request<[NewsTitleModel]> {
             let payload = json["payload"] as? [[String: Any]]
             else { return out }
         
-        out = payload.map({ (rawModel) -> NewsTitleModel in
+        out = payload.map({ (rawModel) -> NewsModel in
             let title = rawModel["text"] as! String
             let id = rawModel["id"] as! String
             let date = Date(timeIntervalSince1970: TimeInterval((rawModel["publicationDate"] as! [String: Int])["milliseconds"]! / 1000))
-            return NewsTitleModel(id: id, title: title, date: date)
+            return NewsModel(id: id, title: title, date: date, text: nil)
         })
         
         return out

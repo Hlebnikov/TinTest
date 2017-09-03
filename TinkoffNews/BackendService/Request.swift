@@ -10,8 +10,8 @@ import Foundation
 
 class Request<ResponseType> {
     var url: String?
-    var onSuccessBlock: ((ResponseType) -> ())?
-    var onErrorBlock: ((Error) -> ())?
+    fileprivate var onSuccessBlock: ((ResponseType) -> ())?
+    fileprivate var onErrorBlock: ((Error) -> ())?
     
     func map(_ data: Data) -> ResponseType? {
         assertionFailure("Need to override")

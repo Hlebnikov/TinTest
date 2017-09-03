@@ -10,11 +10,11 @@ import Foundation
 
 class NewsService: NewsServiceProtocol {
         
-    func getNewsTitlesList() -> Request<[NewsTitleModel]> {
+    func getNewsTitlesList() -> Request<[NewsModel]> {
         return GetNewsTitlesRequest()
     }
     
     func getDetails(forNewsWithId id: String) -> Request<NewsModel> {
-        return GetDetails(id: id)
+        return GetDetailsRequest(id: id)
     }
 }

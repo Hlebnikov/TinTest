@@ -15,7 +15,7 @@ class OneNewsViewController: UIViewController, OneNewsView {
     @IBOutlet weak var webView: UIWebView!
 
     func fill(info: NewsModel) {
-        webView.loadHTMLString(info.text, baseURL: nil)
+        webView.loadHTMLString(info.text!, baseURL: nil)
     }
     
     override func viewDidLoad() {

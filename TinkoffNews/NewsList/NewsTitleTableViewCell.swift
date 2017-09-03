@@ -18,7 +18,7 @@ class NewsTitleTableViewCell: UITableViewCell, NewsTitleView {
     @IBOutlet weak var dateLabel: UILabel!
     
     func fill(data: NewsViewData) {
-        titleLabel.text = data.title
+        titleLabel.text = data.title.htmlEncodedString()
         dateLabel.text = data.date
     }
 }
