@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1F29D0571F5AAE01009D06E8 /* NewsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F29D0561F5AAE01009D06E8 /* NewsStore.swift */; };
-		1F29D05A1F5AAFCA009D06E8 /* News.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F29D0591F5AAFCA009D06E8 /* News.swift */; };
+		1F29D05A1F5AAFCA009D06E8 /* NewsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F29D0591F5AAFCA009D06E8 /* NewsModel.swift */; };
 		1F62A27B1F557A5A0041C87A /* NewsServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F62A27A1F557A5A0041C87A /* NewsServiceProtocol.swift */; };
 		1F62A27D1F557CBC0041C87A /* NewsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F62A27C1F557CBC0041C87A /* NewsService.swift */; };
 		1F6636241F5A85150086501C /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6636231F5A85150086501C /* Request.swift */; };
@@ -34,7 +34,7 @@
 
 /* Begin PBXFileReference section */
 		1F29D0561F5AAE01009D06E8 /* NewsStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewsStore.swift; path = NewsStore/NewsStore.swift; sourceTree = "<group>"; };
-		1F29D0591F5AAFCA009D06E8 /* News.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = News.swift; path = Models/News.swift; sourceTree = "<group>"; };
+		1F29D0591F5AAFCA009D06E8 /* NewsModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewsModel.swift; path = Models/NewsModel.swift; sourceTree = "<group>"; };
 		1F62A27A1F557A5A0041C87A /* NewsServiceProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsServiceProtocol.swift; sourceTree = "<group>"; };
 		1F62A27C1F557CBC0041C87A /* NewsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsService.swift; sourceTree = "<group>"; };
 		1F6636231F5A85150086501C /* Request.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Request.swift; path = BackendService/Request.swift; sourceTree = "<group>"; };
@@ -74,7 +74,7 @@
 		1F29D0581F5AAFA7009D06E8 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				1F29D0591F5AAFCA009D06E8 /* News.swift */,
+				1F29D0591F5AAFCA009D06E8 /* NewsModel.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -136,10 +136,10 @@
 		1F91BCE31F52ED3300C645ED /* TinkoffNews */ = {
 			isa = PBXGroup;
 			children = (
-				1F29D0581F5AAFA7009D06E8 /* Models */,
-				1F66362E1F5AABEB0086501C /* NewsStore */,
 				1F863BF81F56E2AA004EFF9F /* Provider.swift */,
 				1F66362A1F5A8FF10086501C /* StringExtension.swift */,
+				1F29D0581F5AAFA7009D06E8 /* Models */,
+				1F66362E1F5AABEB0086501C /* NewsStore */,
 				1F62A2791F557A350041C87A /* BackendService */,
 				1F91BCF91F53014600C645ED /* NewsList */,
 				1F863BF11F56DF4D004EFF9F /* OneNewsScreen */,
@@ -272,7 +272,7 @@
 				1F6636271F5A85630086501C /* GetNewsTitlesRequest.swift in Sources */,
 				1F91BCE51F52ED3300C645ED /* AppDelegate.swift in Sources */,
 				1F62A27B1F557A5A0041C87A /* NewsServiceProtocol.swift in Sources */,
-				1F29D05A1F5AAFCA009D06E8 /* News.swift in Sources */,
+				1F29D05A1F5AAFCA009D06E8 /* NewsModel.swift in Sources */,
 				1F91BD051F53075000C645ED /* NewsTitleTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

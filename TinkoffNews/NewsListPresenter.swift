@@ -30,11 +30,8 @@ class NewsListPresenter {
         self.newsStore = newsStore
     }
     
-    @objc func update() {
-        
-//        newsStroe?.clear()
+    func update() {
         newsListView?.startLoading()
-
         
         if let storedNews = newsStore?.getNews() {
             if storedNews.count > 0 {
@@ -42,12 +39,17 @@ class NewsListPresenter {
             }
         }
         
-        newsService.getNewsTitlesList()
+        newsService
+            .getNewsTitlesList()
             .onSuccess {[weak self] (newsList) in
                 self?.sortedNewsList = newsList.sorted(by: { (firstData, secondData) -> Bool in
                     return firstData.date > secondData.date
                 })
-            }.resume()
+            }
+            .onError({ (error) in
+                print(error)
+            })
+            .resume()
     }
     
     private func showNewsList(newsList: [NewsModel]) {
@@ -62,7 +64,6 @@ class NewsListPresenter {
         }
         
     }
-
     
     func selectNews(withIndex index: Int) {
         if let sortedNewsList = self.sortedNewsList {

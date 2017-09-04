@@ -24,7 +24,7 @@ struct NewsModel {
 }
 
 extension NewsModel: Cashable {
-    private func newsFetchRequest() -> NSFetchRequest<News> {
+    private var newsFetchRequest: NSFetchRequest<News> {
         let fetchRequest = NSFetchRequest<News>(entityName: "News")
         let predicate = NSPredicate(format: "%K == %@", "id", id)
         fetchRequest.predicate = predicate
@@ -55,7 +55,7 @@ extension NewsModel: Cashable {
     
     private func exists() -> Bool {
         do{
-            if let _ = try context.fetch(newsFetchRequest()).first {
+            if let _ = try context.fetch(newsFetchRequest).first {
                 return true
             }
         } catch {
@@ -66,7 +66,7 @@ extension NewsModel: Cashable {
     
     private func updateIfNeeded() {
         do{
-            if let result = try context.fetch(newsFetchRequest()).first {
+            if let result = try context.fetch(newsFetchRequest).first {
                 if result.text == nil && self.text != nil {
                     result.text = text
                     CoreDataManager.shared.saveContext()
@@ -79,7 +79,7 @@ extension NewsModel: Cashable {
 
     mutating func fetch() {
         do {
-            if let result = try context.fetch(newsFetchRequest()).first {
+            if let result = try context.fetch(newsFetchRequest).first {
                 self.id = result.id ?? ""
                 self.title = result.title ?? ""
                 self.text = result.text
@@ -92,7 +92,7 @@ extension NewsModel: Cashable {
     
     func delete() {
         do {
-            let results = try context.fetch(newsFetchRequest())
+            let results = try context.fetch(newsFetchRequest)
             for result in results {
                 context.delete(result)
             }

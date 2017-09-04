@@ -33,7 +33,11 @@ class OneNewsPresenter {
                         self.view.fill(info: news)
                     }
                     news.save()
-                }.resume()
+                }
+                .onError({ (error) in
+                    print(error)
+                })
+                .resume()
         }
     }
 }

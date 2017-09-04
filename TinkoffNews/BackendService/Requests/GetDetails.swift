@@ -31,7 +31,9 @@ class GetDetailsRequest: Request<NewsModel> {
         let id = titleJson["id"] as! String
         let title = titleJson["text"] as! String
         let content = payload["content"] as! String
-//        let date = payload["date"] as! [String]
-        return NewsModel(id: id, title: title, date: Date(), text: content)
+        let publicationDate = titleJson["publicationDate"] as! [String: Int]
+        let milliseconds = publicationDate["milliseconds"]!
+        let date = Date(timeIntervalSince1970: TimeInterval(milliseconds / 1000))
+        return NewsModel(id: id, title: title, date: date, text: content)
     }
 }
