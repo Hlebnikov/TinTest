@@ -71,6 +71,7 @@ class NewsListTableViewController: UITableViewController, NewsListView {
     
     //MARK: - Table view delegate 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: false)
         presenter?.selectNews(withIndex: indexPath.row)
     }
     

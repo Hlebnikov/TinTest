@@ -9,21 +9,22 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--One News View Controller-->
+        <!--Подробнее-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController storyboardIdentifier="newsDetails" id="BYZ-38-t0r" customClass="OneNewsViewController" customModule="TinkoffNews" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="newsDetails" title="Подробнее" id="BYZ-38-t0r" customClass="OneNewsViewController" customModule="TinkoffNews" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Og0-Qc-3cw">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            <webView contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="Og0-Qc-3cw">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="tintColor" red="1" green="0.94368410459999996" blue="0.58717680100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES"/>
                             </webView>
                         </subviews>
@@ -43,19 +44,20 @@
             </objects>
             <point key="canvasLocation" x="1432.8" y="-267.61619190404798"/>
         </scene>
-        <!--News List Table View Controller-->
+        <!--Новости-->
         <scene sceneID="0JE-fu-Ii5">
             <objects>
                 <tableViewController id="Cbh-hf-LAi" customClass="NewsListTableViewController" customModule="TinkoffNews" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="67" sectionHeaderHeight="28" sectionFooterHeight="28" id="2R0-bT-NMW">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.28777650069999999" green="0.28777650069999999" blue="0.28777650069999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="tintColor" red="1" green="0.97057931239999995" blue="0.46818874599999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <view key="tableHeaderView" clipsSubviews="YES" contentMode="scaleToFill" id="Kmj-p2-yGr">
                             <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="CAV-hv-Jp7">
+                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="CAV-hv-Jp7">
                                     <rect key="frame" x="178" y="20.5" width="20" height="20"/>
                                 </activityIndicatorView>
                             </subviews>
@@ -81,17 +83,17 @@
                                                         <constraint firstAttribute="height" constant="15" id="K7p-Un-9g2"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
-                                                    <color key="textColor" red="0.27450980390000002" green="0.56078431370000004" blue="0.83137254900000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="textColor" red="1" green="0.94368410459999996" blue="0.58717680100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" text="Title" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rkW-fF-CEN">
                                                     <rect key="frame" x="8" y="31" width="359" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
-                                                    <nil key="textColor"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
-                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="backgroundColor" red="0.28777650074305272" green="0.28777650074305272" blue="0.28777650074305272" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="trailing" secondItem="rkW-fF-CEN" secondAttribute="trailing" constant="8" id="8en-rR-xj3"/>
                                                 <constraint firstItem="rkW-fF-CEN" firstAttribute="leading" secondItem="1aV-0B-0TE" secondAttribute="leading" constant="8" id="QzP-n0-tKi"/>
@@ -103,7 +105,7 @@
                                             </constraints>
                                         </view>
                                     </subviews>
-                                    <color key="backgroundColor" red="0.92141932250000003" green="0.921331346" blue="0.9377813935" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
                                         <constraint firstItem="1aV-0B-0TE" firstAttribute="leading" secondItem="b2o-aG-ULb" secondAttribute="leading" id="Amd-Ik-Z8Y"/>
                                         <constraint firstAttribute="bottom" secondItem="1aV-0B-0TE" secondAttribute="bottom" constant="-0.5" id="fZc-0L-ujC"/>
@@ -122,7 +124,7 @@
                             <outlet property="delegate" destination="Cbh-hf-LAi" id="fKe-Gi-DgA"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="ioR-zW-QRw"/>
+                    <navigationItem key="navigationItem" title="Новости" id="ioR-zW-QRw"/>
                     <connections>
                         <outlet property="emptyView" destination="Kmj-p2-yGr" id="olb-JY-g8z"/>
                         <segue destination="BYZ-38-t0r" kind="show" identifier="toDetails" id="8Ev-Ug-z8D"/>
@@ -136,9 +138,15 @@
         <scene sceneID="9l2-Uk-d6g">
             <objects>
                 <navigationController id="y2T-1K-p7q" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="eam-Jz-gcP">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="eam-Jz-gcP">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="tintColor" red="1" green="0.97057931239999995" blue="0.46818874599999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="barTintColor" red="0.12626903553299496" green="0.12626903553299496" blue="0.12626903553299496" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" red="1" green="0.94368410456230611" blue="0.58717680099392777" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </textAttributes>
                     </navigationBar>
                     <connections>
                         <segue destination="Cbh-hf-LAi" kind="relationship" relationship="rootViewController" id="XX2-xn-rLi"/>
