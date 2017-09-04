@@ -11,7 +11,7 @@ import Foundation
 class GetNewsTitlesRequest: Request<[NewsModel]> {
     override init() {
         super.init()
-        self.url = "https://api.tinkoff.ru/v1/news"
+        self.url = Constants.baseUrl.rawValue + "/news"
     }
     
     override func map(_ data: Data) -> [NewsModel] {
@@ -24,9 +24,16 @@ class GetNewsTitlesRequest: Request<[NewsModel]> {
             else { return out }
         
         out = payload.map({ (rawModel) -> NewsModel in
-            let title = rawModel["text"] as! String
-            let id = rawModel["id"] as! String
-            let date = Date(timeIntervalSince1970: TimeInterval((rawModel["publicationDate"] as! [String: Int])["milliseconds"]! / 1000))
+            guard
+                let title = rawModel["text"] as? String,
+                let id = rawModel["id"] as? String,
+                let publicationDate = rawModel["publicationDate"] as? [String: Int],
+                let milliseconds = publicationDate["milliseconds"] else {
+                    print("Parsing error on get news titles request")
+                    return NewsModel(id: "Err", title: "Err", date: Date(), text: nil)
+            }
+            
+            let date = Date(timeIntervalSince1970: TimeInterval(milliseconds / 1000))
             return NewsModel(id: id, title: title, date: date, text: nil)
         })
         

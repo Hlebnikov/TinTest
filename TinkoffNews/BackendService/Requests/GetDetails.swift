@@ -14,7 +14,7 @@ class GetDetailsRequest: Request<NewsModel> {
         self.id = id
         super.init()
         
-        self.url = "https://api.tinkoff.ru/v1/news_content?id=\(self.id)"
+        self.url = Constants.baseUrl.rawValue + "/news_content?id=\(self.id)"
     }
     
     override func map(_ data: Data) -> NewsModel {
@@ -22,17 +22,17 @@ class GetDetailsRequest: Request<NewsModel> {
             let json = try! JSONSerialization.jsonObject(with: data) as? [String: Any],
             let resultCode = json["resultCode"] as? String,
             resultCode == "OK",
-            let payload = json["payload"] as? [String: Any]
-            else {
+            let payload = json["payload"] as? [String: Any],
+            let titleJson = payload["title"] as? [String: Any],
+            let id = titleJson["id"] as? String,
+            let title = titleJson["text"] as? String,
+            let content = payload["content"] as? String,
+            let publicationDate = titleJson["publicationDate"] as? [String: Int],
+            let milliseconds = publicationDate["milliseconds"] else {
+                print("Error parsing NewsModel data on get details request")
                 return NewsModel(id: "", title: "", date: Date(), text: "")
         }
-        
-        let titleJson = payload["title"] as! [String: Any]
-        let id = titleJson["id"] as! String
-        let title = titleJson["text"] as! String
-        let content = payload["content"] as! String
-        let publicationDate = titleJson["publicationDate"] as! [String: Int]
-        let milliseconds = publicationDate["milliseconds"]!
+
         let date = Date(timeIntervalSince1970: TimeInterval(milliseconds / 1000))
         return NewsModel(id: id, title: title, date: date, text: content)
     }

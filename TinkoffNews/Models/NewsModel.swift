@@ -44,13 +44,14 @@ extension NewsModel: Cashable {
     }
     
     private func createNew() {
-        let entityDescription = CoreDataManager.shared.entityForName(string: "News")
-        let managedObject = News(entity: entityDescription!, insertInto: context)
-        
-        managedObject.id = self.id
-        managedObject.title = self.title
-        managedObject.text = self.text
-        managedObject.date = self.date as NSDate
+        if let entityDescription = CoreDataManager.shared.entityForName(string: "News") {
+            let managedObject = News(entity: entityDescription, insertInto: context)
+            
+            managedObject.id = self.id
+            managedObject.title = self.title
+            managedObject.text = self.text
+            managedObject.date = self.date as NSDate
+        }
     }
     
     private func exists() -> Bool {
