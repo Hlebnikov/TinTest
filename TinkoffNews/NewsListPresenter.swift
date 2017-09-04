@@ -24,11 +24,10 @@ class NewsListPresenter {
     }
     var provider: Provider?
     
-    init(view: NewsListView, newsService: NewsServiceProtocol) {
+    init(view: NewsListView, newsService: NewsServiceProtocol, newsStore: NewsStoreProtocol) {
         self.newsService = newsService
         self.newsListView = view
-        
-        self.newsStore = NewsStore()
+        self.newsStore = newsStore
     }
     
     @objc func update() {

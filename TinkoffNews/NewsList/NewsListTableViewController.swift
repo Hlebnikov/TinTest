@@ -19,7 +19,7 @@ class NewsListTableViewController: UITableViewController, NewsListView {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        presenter = NewsListPresenter(view: self, newsService: NewsService())
+        presenter = NewsListPresenter(view: self, newsService: NewsService(), newsStore: NewsStore())
         presenter?.provider = Provider(navigationController: navigationController!)
         
         tableView.rowHeight = UITableViewAutomaticDimension

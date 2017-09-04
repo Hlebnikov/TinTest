@@ -111,9 +111,8 @@
 		1F863BF11F56DF4D004EFF9F /* OneNewsScreen */ = {
 			isa = PBXGroup;
 			children = (
-				1F863BF21F56DFA0004EFF9F /* OneNewsView.swift */,
+				1FB560CD1F5D0E64006DCE8A /* Classes */,
 				1F863BF41F56E00F004EFF9F /* OneNewsViewController.swift */,
-				1F863BF61F56E0A2004EFF9F /* OneNewsPresenter.swift */,
 			);
 			name = OneNewsScreen;
 			sourceTree = "<group>";
@@ -158,20 +157,29 @@
 		1F91BCF91F53014600C645ED /* NewsList */ = {
 			isa = PBXGroup;
 			children = (
-				1F91BCFE1F5301D700C645ED /* Protocols */,
+				1F91BCFE1F5301D700C645ED /* Classes */,
 				1F91BCFC1F5301C000C645ED /* NewsListTableViewController.swift */,
 			);
 			name = NewsList;
 			sourceTree = "<group>";
 		};
-		1F91BCFE1F5301D700C645ED /* Protocols */ = {
+		1F91BCFE1F5301D700C645ED /* Classes */ = {
 			isa = PBXGroup;
 			children = (
 				1F91BCFF1F5301FD00C645ED /* NewsListView.swift */,
 				1F91BD011F53024200C645ED /* NewsListPresenter.swift */,
 				1F91BD031F53075000C645ED /* NewsTitleTableViewCell.swift */,
 			);
-			name = Protocols;
+			name = Classes;
+			sourceTree = "<group>";
+		};
+		1FB560CD1F5D0E64006DCE8A /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				1F863BF21F56DFA0004EFF9F /* OneNewsView.swift */,
+				1F863BF61F56E0A2004EFF9F /* OneNewsPresenter.swift */,
+			);
+			name = Classes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

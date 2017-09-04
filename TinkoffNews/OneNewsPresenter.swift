@@ -14,12 +14,11 @@ class OneNewsPresenter {
     private var newsStore: NewsStoreProtocol?
     private var news: NewsModel!
     
-    init(view: OneNewsView, newsService: NewsServiceProtocol, news: NewsModel) {
+    init(view: OneNewsView, newsService: NewsServiceProtocol, newsStore: NewsStoreProtocol, news: NewsModel) {
         self.view = view
         self.newsService = newsService
         self.news = news
-        
-        newsStore = NewsStore()
+        self.newsStore = newsStore
     }
     
     func reload() {
